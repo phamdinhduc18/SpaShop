@@ -4,14 +4,15 @@ using SpaShop.Data.Entities;
 
 namespace SpaShop.Data.Configurations
 {
-    public class CartConfiguration : IEntityTypeConfiguration<Cart>
+    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
+        public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.ToTable("Carts");
+            builder.ToTable("Transactions");
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.HasOne(x => x.Product).WithMany(x => x.Carts).HasForeignKey(x => x.ProductId);
+
         }
     }
 }

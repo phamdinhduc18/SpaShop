@@ -1,17 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SpaShop.Data.Entities;
-
 namespace SpaShop.Data.Configurations
 {
-    public class CartConfiguration : IEntityTypeConfiguration<Cart>
+    public class ContactConfiguration : IEntityTypeConfiguration<Contact>
     {
-        public void Configure(EntityTypeBuilder<Cart> builder)
+        public void Configure(EntityTypeBuilder<Contact> builder)
         {
-            builder.ToTable("Carts");
+            builder.ToTable("Contacts");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.HasOne(x => x.Product).WithMany(x => x.Carts).HasForeignKey(x => x.ProductId);
         }
     }
 }

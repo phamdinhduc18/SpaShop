@@ -17,7 +17,7 @@ namespace SpaShop.Data.Entities
         public string SeoTitle { set; get; }
 
         public string SeoAlias { get; set; }
-        public int LanguageId { set; get; }
+        public string LanguageId { set; get; }
         public Language Language { get; set; }
         public Product Product { get; set; }
     }

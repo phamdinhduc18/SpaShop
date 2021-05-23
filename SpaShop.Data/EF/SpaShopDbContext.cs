@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpaShop.Data.Configurations;
 using SpaShop.Data.Entities;
+using SpaShop.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,8 @@ namespace SpaShop.Data.EF
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             // base.OnModelCreating(modelBuilder);
+            //Data seeding
+            modelBuilder.Seed();
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

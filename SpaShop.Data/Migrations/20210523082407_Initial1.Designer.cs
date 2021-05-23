@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaShop.Data.EF;
 
 namespace SpaShop.Data.Migrations
 {
     [DbContext(typeof(SpaShopDbContext))]
-    partial class SpaShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210523082407_Initial1")]
+    partial class Initial1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,23 +33,6 @@ namespace SpaShop.Data.Migrations
                     b.HasKey("Key");
 
                     b.ToTable("AppConfigs");
-
-                    b.HasData(
-                        new
-                        {
-                            Key = "HomeTitle",
-                            Value = "Đây là trang chủ Spa Shop"
-                        },
-                        new
-                        {
-                            Key = "HomeKeyword",
-                            Value = "This is keyword of Spa Shop"
-                        },
-                        new
-                        {
-                            Key = "HomeDescription",
-                            Value = "This is description of Spa Shop"
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.Cart", b =>
@@ -107,22 +92,6 @@ namespace SpaShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsShowOnHome = true,
-                            SortOrder = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsShowOnHome = true,
-                            SortOrder = 2,
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.CategoryTranslation", b =>
@@ -159,48 +128,6 @@ namespace SpaShop.Data.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("CategoryTranslations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            LanguageId = "vi-VN",
-                            Name = "Dưỡng da",
-                            SeoAlias = "duong-da",
-                            SeoDescription = "Sản phẩm dưỡng da",
-                            SeoTitle = "Sản phẩm dưỡng da"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            LanguageId = "en-US",
-                            Name = "Lotion",
-                            SeoAlias = "Lotion",
-                            SeoDescription = "Skin care products",
-                            SeoTitle = "Skin care products for women"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 2,
-                            LanguageId = "vi-VN",
-                            Name = "Trị mụn",
-                            SeoAlias = "tri-mun",
-                            SeoDescription = "Sản phẩm trị mụn",
-                            SeoTitle = "SSản phẩm trị mụn"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 2,
-                            LanguageId = "en-US",
-                            Name = "Acne treatment",
-                            SeoAlias = "acne-treatment",
-                            SeoDescription = "Acne products",
-                            SeoTitle = "Acne products"
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.Contact", b =>
@@ -246,20 +173,6 @@ namespace SpaShop.Data.Migrations
                     b.HasKey("LanguageId");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            LanguageId = "vi-VN",
-                            IsDefault = true,
-                            Name = "Tiếng Việt"
-                        },
-                        new
-                        {
-                            LanguageId = "en-US",
-                            IsDefault = false,
-                            Name = "English"
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.Order", b =>
@@ -274,7 +187,7 @@ namespace SpaShop.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 5, 23, 15, 40, 49, 760, DateTimeKind.Local).AddTicks(7242));
+                        .HasDefaultValue(new DateTime(2021, 5, 23, 15, 24, 6, 984, DateTimeKind.Local).AddTicks(2053));
 
                     b.Property<string>("ShipAddress")
                         .HasColumnType("nvarchar(max)");
@@ -354,18 +267,6 @@ namespace SpaShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2021, 5, 23, 15, 40, 49, 777, DateTimeKind.Local).AddTicks(1068),
-                            OriginalPrice = 100000m,
-                            Price = 200000m,
-                            SeoAlias = 0,
-                            Stock = 0,
-                            ViewCount = 0
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.ProductInCategory", b =>
@@ -381,13 +282,6 @@ namespace SpaShop.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductInCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            ProductId = 1
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.ProductTranslation", b =>
@@ -430,32 +324,6 @@ namespace SpaShop.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductTranslations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Dưỡng body Lotion Mask Muji",
-                            Details = "Dưỡng body Lotion Mask Muji",
-                            LanguageId = "vi-VN",
-                            Name = "Dưỡng body Lotion Mask Muji",
-                            ProductId = 1,
-                            SeoAlias = "duong-body-lotion-mask-muji",
-                            SeoDescription = "Dưỡng body Lotion Mask Muji",
-                            SeoTitle = "Dưỡng body Lotion Mask Muji"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Body Lotion Mask Muji",
-                            Details = "Body Lotion Mask Muji",
-                            LanguageId = "en-US",
-                            Name = "Body Lotion Mask Muji",
-                            ProductId = 1,
-                            SeoAlias = "body-lotion-mask-muji",
-                            SeoDescription = "Body Lotion Mask Muji",
-                            SeoTitle = "Body Lotion Mask Muji"
-                        });
                 });
 
             modelBuilder.Entity("SpaShop.Data.Entities.Promotion", b =>

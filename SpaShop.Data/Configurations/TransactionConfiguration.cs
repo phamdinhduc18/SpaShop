@@ -12,6 +12,7 @@ namespace SpaShop.Data.Configurations
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Transactions).HasForeignKey(x => x.UserId);
 
         }
     }

@@ -4,17 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaShop.Domain.Catalog.Products.Dtos
+namespace SpaShop.Domain.Catalog.Products.Dtos.Manage
 {
-    public class ProductViewModel
+    public class ProductCreateRequest
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
         public decimal Price { get; set; }
         public decimal OriginalPrice { get; set; }
         public int Stock { get; set; }
-        public int ViewCount { get; set; }
-        public DateTime DateCreated { get; set; }
-        public string Name { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }
         public string SeoDescription { set; get; }

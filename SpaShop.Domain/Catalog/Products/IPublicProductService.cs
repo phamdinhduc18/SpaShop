@@ -11,6 +11,7 @@ namespace SpaShop.Domain.Catalog.Products
 {
     public interface IPublicProductService
     {
-        PagedResult<ProductViewModel> GetAllByCategoryId(GetProductPagingRequest request);
+        Task<List<ProductViewModel>> GetAll();
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request);
     }
 }

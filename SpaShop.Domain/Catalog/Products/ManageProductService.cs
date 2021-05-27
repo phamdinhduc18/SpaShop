@@ -103,19 +103,35 @@ namespace SpaShop.Domain.Catalog.Products
             return pagedResult;
         }
 
-        public Task<int> Update(ProductUpdateRequest request)
+        public async Task<int> Update(ProductUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(request.Id);
+            var productTranlastions = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId==request.LanguageId);
+            if (product == null || productTranlastions==null) throw new SpaShopException($"Cannot find a product with id:{request.Id}");
+
+            productTranlastions.Name = request.Name;
+            productTranlastions.SeoAlias = request.SeoAlias;
+            productTranlastions.SeoDescription = request.SeoDescription;
+            productTranlastions.SeoTitle = request.SeoTitle;
+            productTranlastions.Description = request.Description;
+            productTranlastions.Details = request.Details;
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<bool> UpdatePrice(int productId, decimal newPrice)
+        public async Task<bool> UpdatePrice(int productId, decimal newPrice)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new SpaShopException($"Cannot find a product with id:{productId}");
+            product.Price = newPrice;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateStock(int productId, int addedQuantity)
+        public async Task<bool> UpdateStock(int productId, int addedQuantity)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new SpaShopException($"Cannot find a product with id:{productId}");
+            product.Stock += addedQuantity;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using SpaShop.Data.EF;
-using SpaShop.Domain.Catalog.Dtos;
-using SpaShop.Domain.Catalog.Products.Dtos;
-using SpaShop.Domain.Catalog.Products.Dtos.Public;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpaShop.ViewModels.Common;
+using SpaShop.ViewModels.Catalog.Products;
+using SpaShop.ViewModels.Catalog.Products.Public;
 
 namespace SpaShop.Domain.Catalog.Products
 {

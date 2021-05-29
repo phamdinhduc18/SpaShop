@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaShop.Domain.Catalog.Products.Dtos
+namespace SpaShop.ViewModels.Catalog.Products
 {
     public class ProductViewModel
     {

@@ -1,10 +1,7 @@
-﻿using SpaShop.Domain.Catalog.Dtos;
-using SpaShop.Domain.Catalog.Products.Dtos;
-using SpaShop.Domain.Catalog.Products.Dtos.Public;
-using System;
+﻿using SpaShop.ViewModels.Catalog.Products;
+using SpaShop.ViewModels.Catalog.Products.Public;
+using SpaShop.ViewModels.Common;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SpaShop.Domain.Catalog.Products

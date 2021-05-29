@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.Data", "SpaShop.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.Domain", "SpaShop.Domain\SpaShop.Domain.csproj", "{67DDB72D-B640-41EC-A2C5-6C3A48D96F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaShop.Utilities", "SpaShop.Utilities\SpaShop.Utilities.csproj", "{D62359AB-4CEE-401C-A047-570415B658B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.Utilities", "SpaShop.Utilities\SpaShop.Utilities.csproj", "{D62359AB-4CEE-401C-A047-570415B658B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaShop.ViewModels", "SpaShop.ViewModels\SpaShop.ViewModels.csproj", "{30E7F302-30CE-4C2E-9F70-0007AF903ED7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{D62359AB-4CEE-401C-A047-570415B658B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D62359AB-4CEE-401C-A047-570415B658B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D62359AB-4CEE-401C-A047-570415B658B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

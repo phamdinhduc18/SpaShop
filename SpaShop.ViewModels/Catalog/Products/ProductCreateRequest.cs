@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaShop.ViewModels.Catalog.Products.Manage
+namespace SpaShop.ViewModels.Catalog.Products
 {
-    public class ProductUpdateRequest
+    public class ProductCreateRequest
     {
-        public int Id { get; set; }
-        public string Name { set; get; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public decimal OriginalPrice { get; set; }
+        public int Stock { get; set; }
         public string Description { set; get; }
         public string Details { set; get; }
         public string SeoDescription { set; get; }

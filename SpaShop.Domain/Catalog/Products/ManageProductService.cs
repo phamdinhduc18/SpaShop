@@ -5,7 +5,6 @@ using SpaShop.Data.Entities;
 using SpaShop.Domain.Common;
 using SpaShop.Utilities.Exceptions;
 using SpaShop.ViewModels.Catalog.Products;
-using SpaShop.ViewModels.Catalog.Products.Manage;
 using SpaShop.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -94,7 +93,7 @@ namespace SpaShop.Domain.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaShop.Data.EF;
 
 namespace SpaShop.Data.Migrations
 {
     [DbContext(typeof(SpaShopDbContext))]
-    partial class SpaShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210527150509_AddProductImage")]
+    partial class AddProductImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,7 +181,7 @@ namespace SpaShop.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "7abd6a5f-7dc0-4fdb-b9c6-81c409ea25c3",
+                            ConcurrencyStamp = "302e758e-9720-4c1b-93f5-9e51d03c6684",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -254,7 +256,7 @@ namespace SpaShop.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54c2dc6c-9faa-4310-8025-84bd65466ed0",
+                            ConcurrencyStamp = "63519a63-2d72-442f-b9d2-3e1d21ebabf8",
                             Dob = new DateTime(2021, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
@@ -263,7 +265,7 @@ namespace SpaShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAENrxOjHyukuo6YPjOAl1kXE20Im1IvVAL/Bb1uSSWCjKsAg2YCA1ao/O4bQ4rF8D8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPENkog0Dw3iXF5j4+5VokKeXIADOqywXbpmaeH8s5aRsw7gHwZ/ee31VSms7if9IQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -582,7 +584,7 @@ namespace SpaShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 5, 29, 23, 24, 49, 973, DateTimeKind.Local).AddTicks(3907),
+                            DateCreated = new DateTime(2021, 5, 27, 22, 5, 7, 168, DateTimeKind.Local).AddTicks(1328),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             SeoAlias = 0,

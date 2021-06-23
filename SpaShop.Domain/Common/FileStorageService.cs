@@ -15,7 +15,8 @@ namespace SpaShop.Domain.Common
 
         public FileStorageService(IWebHostEnvironment webHostEnvironment)
         {
-            _userContentFolder = Path.Combine(webHostEnvironment.WebRootPath, USER_CONTENT_FOLDER_NAME);
+            _userContentFolder = Path.Combine("Resources", "Images");
+            //_userContentFolder =Path.Combine("Resources", "Images");
         }
 
         public string GetFileUrl(string fileName)

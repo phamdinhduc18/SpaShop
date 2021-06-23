@@ -7,7 +7,7 @@ namespace SpaShop.Domain.Catalog.Products
 {
     public interface IPublicProductService
     {
-        Task<List<ProductViewModel>> GetAll();
+        Task<List<ProductViewModel>> GetAll(string languageId);
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
     }
 }

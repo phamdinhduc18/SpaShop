@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SpaShop.Data.EF;
 using SpaShop.Domain.Catalog.Products;
+using SpaShop.Domain.Common;
 using SpaShop.Utilities.Constants;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,10 @@ namespace SpaShop.API
             services.AddDbContext<SpaShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
             //Declare DI
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
-            services.AddControllers();
+            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddControllers(options => options.SuppressAsyncSuffixInActionNames = false);
 
             services.AddSwaggerGen(c =>
             {
@@ -52,15 +55,20 @@ namespace SpaShop.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpaShop.API v1"));
             }
 
+            app.UseStaticFiles();
+            app.UseCors();
             app.UseHttpsRedirection();
+            app.UseAuthorization();
+
 
             app.UseRouting();
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Product}/{action=Index}/{id?}");
             });
         }
     }

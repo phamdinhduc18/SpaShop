@@ -4,6 +4,7 @@ using SpaShop.Data.EF;
 using SpaShop.Data.Entities;
 using SpaShop.Domain.Common;
 using SpaShop.Utilities.Exceptions;
+using SpaShop.ViewModels.Catalog.ProductImages;
 using SpaShop.ViewModels.Catalog.Products;
 using SpaShop.ViewModels.Common;
 using System;
@@ -20,15 +21,11 @@ namespace SpaShop.Domain.Catalog.Products
     {
         private readonly SpaShopDbContext _context;
         private readonly IStorageService _storageService;
+
         public ManageProductService(SpaShopDbContext context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
-        }
-
-        public Task<int> AddImages(int productId, List<IFormFile> files)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task AddViewcount(int productId)
@@ -62,7 +59,7 @@ namespace SpaShop.Domain.Catalog.Products
                 }
             };
             //Save image
-            if(request.ThumbnailImage != null)
+            if (request.ThumbnailImage != null)
             {
                 product.ProductImages = new List<ProductImage>()
                 {
@@ -158,21 +155,11 @@ namespace SpaShop.Domain.Catalog.Products
             return productViewModel;
         }
 
-        public Task<List<ProductImageViewModel>> GetListImage(int productId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> RemoveImages(int imageId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
-            var productTranlastions = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId==request.LanguageId);
-            if (product == null || productTranlastions==null) throw new SpaShopException($"Cannot find a product with id:{request.Id}");
+            var productTranlastions = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
+            if (product == null || productTranlastions == null) throw new SpaShopException($"Cannot find a product with id:{request.Id}");
 
             productTranlastions.Name = request.Name;
             productTranlastions.SeoAlias = request.SeoAlias;
@@ -182,10 +169,10 @@ namespace SpaShop.Domain.Catalog.Products
             productTranlastions.Details = request.Details;
 
             //Save image
-            if(request.ThumbnailImage != null)
+            if (request.ThumbnailImage != null)
             {
                 var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
-                if(thumbnailImage != null)
+                if (thumbnailImage != null)
                 {
                     thumbnailImage.FileSize = request.ThumbnailImage.Length;
                     thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
@@ -193,11 +180,6 @@ namespace SpaShop.Domain.Catalog.Products
                 }
             }
             return await _context.SaveChangesAsync();
-        }
-
-        public Task<int> UpdateImage(int imageId, string caption, bool isDefault)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
@@ -215,12 +197,93 @@ namespace SpaShop.Domain.Catalog.Products
             product.Stock += addedQuantity;
             return await _context.SaveChangesAsync() > 0;
         }
+
         public async Task<string> SaveFile(IFormFile file)
         {
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
+        }
+
+        public async Task<int> AddImages(int productId, ProductImageCreateRequest request)
+        {
+            var productImage = new ProductImage()
+            {
+                Caption = request.Caption,
+                DateCreated = DateTime.Now,
+                IsDefault = request.IsDefault,
+                ProductId = productId,
+                SortOrder = request.SortOrder
+            };
+
+            //Save image
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
+            _context.ProductImages.Add(productImage);
+            await _context.SaveChangesAsync();
+            return productImage.Id;
+        }
+
+        public async Task<int> RemoveImages(int imageId)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null)
+                throw new SpaShopException($"Cannot find an image with id{imageId}");
+            _context.ProductImages.Remove(productImage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null)
+                throw new SpaShopException($"Can not find an image {imageId}");
+            if (productImage != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            };
+            _context.ProductImages.Update(productImage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<ProductImageViewModel>> GetListImages(int productId)
+        {
+            return await _context.ProductImages.Where(x => x.ProductId == productId)
+                .Select(i => new ProductImageViewModel()
+                {
+                    Caption = i.Caption,
+                    DateCreated = i.DateCreated,
+                    FileSize = i.FileSize,
+                    Id = i.Id,
+                    ImagePath = i.ImagePath,
+                    IsDefault = i.IsDefault,
+                    SortOrder = i.SortOrder,
+                    ProductId = i.ProductId
+                }).ToListAsync();
+        }
+
+        public async Task<ProductImageViewModel> GetImageById(int imageId)
+        {
+            var image = await _context.ProductImages.FindAsync(imageId);
+            if (image == null)
+                throw new SpaShopException($"Can not find an image {imageId}");
+            var viewModel = new ProductImageViewModel()
+            {
+                Caption = image.Caption,
+                DateCreated = image.DateCreated,
+                FileSize = image.FileSize,
+                Id = image.Id,
+                ImagePath = image.ImagePath,
+                IsDefault = image.IsDefault,
+                SortOrder = image.SortOrder,
+                ProductId = image.ProductId
+            };
+            return viewModel;
         }
     }
 }

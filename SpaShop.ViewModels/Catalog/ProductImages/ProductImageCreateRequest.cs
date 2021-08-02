@@ -5,22 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaShop.ViewModels.Catalog.Products
+namespace SpaShop.ViewModels.Catalog.ProductImages
 {
-    public class ProductImageViewModel
+    public class ProductImageCreateRequest
     {
-        public int Id { get; set; }
         public int ProductId { get; set; }
-        public string ImagePath { get; set; }
 
         public string Caption { get; set; }
 
         public bool IsDefault { get; set; }
 
-        public DateTime DateCreated { get; set; }
-
         public int SortOrder { get; set; }
-
-        public long FileSize { get; set; }
+        public IFormFile ImageFile { get; set; }
     }
 }

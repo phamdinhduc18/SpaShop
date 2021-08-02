@@ -51,8 +51,6 @@ namespace SpaShop.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpaShop.API v1"));
             }
 
             app.UseStaticFiles();
@@ -63,12 +61,14 @@ namespace SpaShop.API
 
             app.UseRouting();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpaShop.API v1"));
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: "{controller=Product}/{action=Index}/{id?}");
+                    name: "default",
+                    pattern: "{controller=Products}/{action=Index}/{id?}");
             });
         }
     }

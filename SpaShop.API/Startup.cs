@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,8 +10,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SpaShop.Data.EF;
+using SpaShop.Data.Entities;
 using SpaShop.Domain.Catalog.Products;
 using SpaShop.Domain.Common;
+using SpaShop.Domain.System.Users;
 using SpaShop.Utilities.Constants;
 using System;
 using System.Collections.Generic;
@@ -33,10 +36,17 @@ namespace SpaShop.API
         {
             services.AddDbContext<SpaShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<SpaShopDbContext>()
+                .AddDefaultTokenProviders();
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<IUserService, UserService>();
             services.AddControllers(options => options.SuppressAsyncSuffixInActionNames = false);
 
             services.AddSwaggerGen(c =>
@@ -57,7 +67,6 @@ namespace SpaShop.API
             app.UseCors();
             app.UseHttpsRedirection();
             app.UseAuthorization();
-
 
             app.UseRouting();
 

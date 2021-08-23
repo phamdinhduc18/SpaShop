@@ -3,12 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop", "SpaShop\SpaShop.csproj", "{F8264C56-FB20-4175-8285-920D4A91257F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2ACB3154-04D8-4B2E-8045-D9F88CE3C0BE}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.API", "SpaShop.API\SpaShop.API.csproj", "{9C28B441-BE21-403D-8D09-8CB986DB9563}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.Data", "SpaShop.Data\SpaShop.Data.csproj", "{E7D15C58-F526-49DE-A2D7-660F60FD4963}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.Domain", "SpaShop.Domain\SpaShop.Domain.csproj", "{67DDB72D-B640-41EC-A2C5-6C3A48D96F83}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaShop.Utilities", "SpaShop.Utilities\SpaShop.Utilities.csproj", "{D62359AB-4CEE-401C-A047-570415B658B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaShop.ViewModels", "SpaShop.ViewModels\SpaShop.ViewModels.csproj", "{30E7F302-30CE-4C2E-9F70-0007AF903ED7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +24,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F8264C56-FB20-4175-8285-920D4A91257F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8264C56-FB20-4175-8285-920D4A91257F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8264C56-FB20-4175-8285-920D4A91257F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8264C56-FB20-4175-8285-920D4A91257F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C28B441-BE21-403D-8D09-8CB986DB9563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C28B441-BE21-403D-8D09-8CB986DB9563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C28B441-BE21-403D-8D09-8CB986DB9563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C28B441-BE21-403D-8D09-8CB986DB9563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D15C58-F526-49DE-A2D7-660F60FD4963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D15C58-F526-49DE-A2D7-660F60FD4963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D15C58-F526-49DE-A2D7-660F60FD4963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D15C58-F526-49DE-A2D7-660F60FD4963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DDB72D-B640-41EC-A2C5-6C3A48D96F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DDB72D-B640-41EC-A2C5-6C3A48D96F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DDB72D-B640-41EC-A2C5-6C3A48D96F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DDB72D-B640-41EC-A2C5-6C3A48D96F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62359AB-4CEE-401C-A047-570415B658B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62359AB-4CEE-401C-A047-570415B658B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62359AB-4CEE-401C-A047-570415B658B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62359AB-4CEE-401C-A047-570415B658B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E7F302-30CE-4C2E-9F70-0007AF903ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

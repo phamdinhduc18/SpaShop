@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpaShop.Domain.Catalog.Products;
 using SpaShop.ViewModels.Catalog.ProductImages;
@@ -24,6 +25,7 @@ namespace SpaShop.API.Controllers
             _manageProductService = manageProductService;
         }
 
+        [Authorize]
         //http://localhost:port/product
         [HttpGet("{languageId}")]
         public async Task<IActionResult> Get(string languageId)
